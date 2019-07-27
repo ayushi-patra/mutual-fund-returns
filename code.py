@@ -8,13 +8,9 @@ import matplotlib.pyplot as plt
 # Code starts here
 data = pd.read_csv(path)
 print(data.shape)
+
 data.describe()
 data = data.drop("Serial Number", axis=1)
-
-
-# code ends here
-
-
 
 
 # --------------
@@ -36,9 +32,6 @@ observed = pd.concat([return_rating.transpose(), risk_rating.transpose()], axis=
 chi2, p, dof, ex = chi2_contingency(observed) 
 
 
-# Code ends here
-
-
 # --------------
 # Code starts here
 correlation = data.corr().abs()
@@ -50,7 +43,6 @@ max_correlated = us_correlation.max()
 print(max_correlated)
 
 data = data.drop(['morningstar_rating', 'portfolio_stocks', 'category_12', 'sharpe_ratio_3y'], axis=1)
-# code ends here
 
 
 # --------------
@@ -58,13 +50,9 @@ data = data.drop(['morningstar_rating', 'portfolio_stocks', 'category_12', 'shar
 fig, ax_1 = plt.subplots()
 ax_1.boxplot(data['price_earning'])
 ax_1.set_title('price_earning')
-
-
 fig, ax_2 = plt.subplots()
 ax_2.boxplot(data['net_annual_expenses_ratio'])
 ax_2.set_title('net_annual_expenses_ratio') 
-
-# code ends here
 
 
 # --------------
@@ -87,8 +75,6 @@ y_pred = lr.predict(X_test)
 
 rmse = np.sqrt(mean_squared_error(y_test, y_pred))
 print(rmse) 
-
-# Code ends here
 
 
 # --------------
@@ -114,5 +100,4 @@ pred = lasso_grid.predict(X_test)
 lasso_rmse = np.sqrt(mean_squared_error(y_test, pred)) 
 
 # Code ends here
-
 
